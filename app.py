@@ -64,6 +64,8 @@ def generate_row(row_id):
     row_name = row_columns[0].text_input("Description", key=f"txt_{row_id}")
     row_date_range = row_columns[1].date_input("Select your days off",
                                                (today, tomorrow), format="MM/DD/YYYY", key=f"dt_{row_id}")
+    if len(row_date_range) != 2:
+        st.stop()
     row_date_range = (row_date_range[0].strftime("%Y-%m-%d"), row_date_range[1].strftime("%Y-%m-%d"))
     row_columns[2].button("🗑️", key=f"del_{row_id}", on_click=remove_row, args=[row_id])
     return {"description": row_name, "dates": row_date_range}
