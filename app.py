@@ -89,7 +89,7 @@ if len(rows_collection) > 0:
     display = st.columns(2)
     data = pd.DataFrame(rows_collection)
     data.rename(columns={"description": "Description", "dates": "Days Off"}, inplace=True)
-    display[0].dataframe(data=data, use_container_width=True)
+    st.dataframe(data=data, use_container_width=True, hide_index=True)
     # display[1].bar_chart(data=data, x="Item Name", y="Quantity")
     trips = data['Days Off'].to_list()
 
