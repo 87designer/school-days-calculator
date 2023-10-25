@@ -27,17 +27,15 @@ st.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fo
 # VARIABLES
 today = datetime.now()
 tomorrow = datetime.now() + timedelta(days=1)
-next_year = today.year + 1
-jan_1 = date(next_year, 1, 1)
-dec_31 = date(next_year, 12, 31)
 
 # -----------------------------------------------------------
 # SIDEBAR
 st.sidebar.markdown("# School Year Details:")
-d = st.sidebar.date_input('School Start Date', value=None, format="MM/DD/YYYY")
+d = st.sidebar.date_input('School Start Date*', value=None, format="MM/DD/YYYY")
 if d is not None:
     start_date = datetime(d.year, d.month, d.day)
-n_days = st.sidebar.number_input('Number of School Days', value=None, min_value=1, max_value=365, step=1)
+n_days = st.sidebar.number_input('Number of School Days*', value=None, min_value=1, max_value=365, step=1)
+st.sidebar.markdown("*Required")
 
 
 # -----------------------------------------------------------
@@ -72,7 +70,8 @@ def generate_row(row_id):
 
 
 st.markdown("""# <i class="fa-solid fa-calculator"></i>  School Days Calculator""", unsafe_allow_html=True)
-st.markdown("""Descriptive text and instructions can go here...""")
+st.markdown("""If there are any Sick Days, Trips, and/or Vacations, please add them below by clicking 'Add Record'.</br>
+*Please keep in mind US Federal holidays will be factored in automatically*""")
 st.markdown("#### Track Days Off.")
 
 for row in st.session_state["rows"]:
